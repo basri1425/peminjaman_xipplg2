@@ -1,11 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>ini adalah halaman dashboard administrator</h1>
-</body>
-</html>
+<?php
+require_once '../../config/session.php';
+require_once '../../config/database.php';
+
+$title = 'Dashboard Administrator';
+
+require_once '../../layouts/header.php';
+require_once '../../layouts/navbar.php';
+require_once '../../layouts/sidebar.php';
+
+$queryUser = $conn->query('select count(*) as total from users');
+$totalUser = $queryUser->fetch_assoc()['total'];
+
+$queryKategori = $conn->query('select count(*) as total from kategori');
+$totalKategori = $queryKategori->fetch_assoc()['total'];
+
+$queryAlat = $conn->query('select count(*) as total from alat');
+$totalAlat = $queryAlat->fetch_assoc()['total'];
+
+$queryPinjam = $conn->query('select count(*) as total from peminjaman');
+$totalPinjam = $queryPinjam->fetch_assoc()['total'];
+
+$queryKembali = $conn->query('select count(*) as total from pengembalian');
+$totalKembali = $queryKembali->fetch_assoc()['total'];
+?>
+
+<div class="container-fluid">
+    <h2 class="mb-2">
+        <i class="bi bi-speedometer2"></i>
+        Dashboard Administrator
+    </h2>
+    <p class="text-muted">
+        Selamat datang, <strong><?= $_SESSION['nama_lengkap'] ?></strong>
+    </p>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-primary shadow-sm">
+                <div class="card-body">
+                    <h6>Total User</h6>
+                    <h2><?= $totalUser ?></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-success shadow-sm">
+                <div class="card-body">
+                    <h6>Kategori</h6>
+                    <h2><?= $totalKategori ?></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-warning shadow-sm">
+                <div class="card-body">
+                    <h6>Peminjaman</h6>
+                    <h2><?= $totalPinjam ?></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
