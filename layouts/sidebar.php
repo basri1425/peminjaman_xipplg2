@@ -13,6 +13,10 @@
                             <i class="bi bi-people"></i>
                             Data user
                         </a>
+                        <a href="<?= BASE_URL ?>/administrator/kategori/index.php" class="list-group-item list-group-item-action">
+                            <i class="bi bi-tags"></i>
+                            Kategori
+                        </a>
                     <?php } ?>
                 </div>
             </div>

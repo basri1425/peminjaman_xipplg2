@@ -1,0 +1,49 @@
+<?php
+require_once '../../config/session.php';
+require_once '../../config/database.php';
+
+if ($_SESSION['level'] != 'Administrator') {
+    header('Location: ../../auth/login.php');
+    exit();
+}
+$title = 'Master katergori';
+
+require_once '../../layouts/header.php';
+require_once '../../layouts/navbar.php';
+require_once '../../layouts/sidebar.php';
+
+$query = "select id_kategori, nama_kategori from kategori order by nama_kategori ASC";
+$result = $conn->query($query);
+?>
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3>
+                <i class="bi bi-tags-fill"></i> Master kategori
+            </h3>
+            <p class="text-muted mb-0">Kelola data kategori alat</p>
+        </div>
+        <a href="tambah.php" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Tambah Katergori
+        </a>
+    </div>
+    <?php if(isset($_GET['pesan'])) : ?>
+        <?php if($_GET['pesan'] == "sukses") : ?>
+            <div class="alert alert-success alert-dismissible fade show">
+                Data ketegori berhasil disimpan
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php elseif ($_GET['pesan'] == "update") : ?>
+            <div class="alert alert-warning alert-dismissible fade show">
+                Data ketegori berhasil diperbaharui
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php elseif ($_GET['pesan'] == "hapus") : ?>
+            <div class="alert alert-danger alert-dismissible fade show">
+                Data ketegori berhasil dihapus
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

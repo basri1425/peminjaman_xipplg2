@@ -49,7 +49,15 @@ $totalKembali = $queryKembali->fetch_assoc()['total'];
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-success shadow-sm">
+                <div class="card-body">
+                    <h6>Alat</h6>
+                    <h2><?= $totalAlat ?></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
             <div class="card border-warning shadow-sm">
                 <div class="card-body">
                     <h6>Peminjaman</h6>
@@ -57,5 +65,16 @@ $totalKembali = $queryKembali->fetch_assoc()['total'];
                 </div>
             </div>
         </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-warning shadow-sm">
+                <div class="card-body">
+                    <h6>Kembali</h6>
+                    <h2><?= $totalKembali ?></h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<?php
+require_once '../../layouts/footer.php';
+?>
