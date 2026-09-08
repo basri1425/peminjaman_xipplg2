@@ -87,3 +87,7 @@ $result = $conn->query($query);
         </div>
     </div>
 </div>
+<?php
+$conn->close();
+require_once '../../layouts/footer.php';
+?>
