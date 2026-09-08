@@ -46,4 +46,44 @@ $result = $conn->query($query);
             </div>
         <?php endif; ?>
     <?php endif; ?>
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            Daftar Kategori
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th width="60">No</th>
+                            <th>Nama Kategori</th>
+                            <th width="170">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        if ($result->num_rows > 0) :
+                            while($row = $result->fetch_assoc()):
+                        ?>
+                        <tr>
+                            <td class="text-center"><?= $no++ ?></td>
+                            <td><?= htmlspecialchars($row['nama_kategori']) ?></td>
+                            <td class="text-center">
+                                <a href="detail.php?id=<?= $row['id_kategori'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                <a href="detail.php?id=<?= $row['id_kategori'] ?>" class="btn btn-info btn-sm">Edit</a>
+                                <a href="detail.php?id=<?= $row['id_kategori'] ?>" class="btn btn-info btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <?php
+                            endwhile;
+                        else:
+                        ?>
+                        <tr><td colspan="4" class="text-center">Belum ada data kategori</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
